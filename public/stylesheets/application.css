@@ -1,0 +1,16 @@
+
+
+#results{
+  border-style:solid;
+  border-width: medium;
+  width:80%;
+  margin: 0 auto;
+}
+
+.each-result{
+  border-style:solid;
+  border-width: medium;
+  border-color: red;
+  width:80%;
+  margin: 0 auto;
+}
