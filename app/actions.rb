@@ -3,7 +3,6 @@ get '/' do
   erb :index
 end
 
-
 post '/' do
   @contact = Contact.new(
     first_name: params[:first_name],

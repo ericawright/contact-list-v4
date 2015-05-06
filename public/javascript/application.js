@@ -14,23 +14,31 @@ $(function() {
     $.each(contacts, display_contacts);
   }
 
-  $("#btn").on('click', function() {
+  function refresh_contacts(){
+    $('#results').empty();
     $.getJSON('/contacts', get_contacts);
-  });
+  }
 
-  $("#submission").on('submit', function(e){
+  $("#btn").on('click', refresh_contacts);
+
+  $("#submission").on('click', function(e){
     e.preventDefault();
-    var data = $('this').serialize();
+    var data = $('#new_contact').serialize();
+    console.log(data);
     $.ajax({
       url: "/",
       type: "POST",
       data: data,
-      success: function (data) {
-          alert('ok');
+      success: function (d) {
+       $("form").trigger('reset');
+        // console.log(d)
+        refresh_contacts();
+
+      },
+      error: function(e) {
+        console.log(e)
       }
     });
   });
-
-
 });
 
