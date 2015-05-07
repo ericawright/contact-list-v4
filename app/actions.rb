@@ -18,8 +18,14 @@ post '/' do
 end
 
 get '/contacts' do
+
   contacts = Contact.all
+    if params[:lookup] !=  ''
+      search = params[:lookup]
+      contacts = contacts.where("first_name LIKE ? OR last_name LIKE ? OR email LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+    end
   content_type :json
   contacts.to_json
 end
+
 

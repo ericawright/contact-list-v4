@@ -1,5 +1,6 @@
 
 $(function() {
+
   var display_contacts = function(index, contact) {
     var each_result = $("<div>").addClass("each-result").appendTo("#results");
     var p1 = $("<p>").text(contact.first_name).appendTo(each_result);
@@ -11,34 +12,52 @@ $(function() {
   }
 
   function get_contacts(contacts) {
+    $('#results').empty();
     $.each(contacts, display_contacts);
   }
 
   function refresh_contacts(){
-    $('#results').empty();
-    $.getJSON('/contacts', get_contacts);
+      $.getJSON('/contacts', get_contacts);
   }
 
-  $("#btn").on('click', refresh_contacts);
+  $("#show").on('click', refresh_contacts);
 
   $("#submission").on('click', function(e){
     e.preventDefault();
     var data = $('#new_contact').serialize();
-    console.log(data);
     $.ajax({
       url: "/",
       type: "POST",
       data: data,
       success: function (d) {
        $("form").trigger('reset');
-        // console.log(d)
-        refresh_contacts();
-
+        refresh_contacts(d);
       },
       error: function(e) {
         console.log(e)
       }
     });
   });
+
+  // $("form").on('submit', function(e){
+  // });
+  $("#find").on('submit', function(e){
+    e.preventDefault();
+    var data = $('#find').serialize();
+    $.ajax({
+      url: "/contacts",
+      type: "GET",
+      data: data,
+      success: function (d) {
+       $("form").trigger('reset');
+        console.log(d);
+         get_contacts(d);
+      },
+      error: function(e) {
+      }
+    });
+  });
+
+
 });
 

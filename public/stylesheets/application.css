@@ -1,11 +1,7 @@
 
-
-#results{
-  border-style:solid;
-  border-width: medium;
-  width:80%;
-  margin: 0 auto;
-}
+/*#search{
+  display: inline;
+}*/
 
 .each-result{
   border-style:solid;

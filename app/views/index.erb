@@ -2,11 +2,11 @@
 <h1>Enter contact information</h1>
 <form id="new_contact" action="/" method="post">
     <div>
-        <label for="name">First Name:</label>
+        <label for="first_name">First Name:</label>
         <input type="text" id="first_name" name="first_name" />
     </div>
      <div>
-        <label for="name">Last Name:</label>
+        <label for="last_name">Last Name:</label>
         <input type="text" id="last_name" name="last_name"/>
     </div>
     <div>
@@ -22,6 +22,17 @@
     </div>
 </form>
 
-<button id="btn">click to show contacts</button>
+<div class = "search">
+  <form id="find" action="/" method: "get"> 
+    <div>
+        <label for="lookup">Search contact name or email:</label>
+        <input type="text" id="lookup" name="lookup" />
+    </div> 
+    <button type="submit" id="search" class="submit">Search</button>
+  </form>
+</div>
+
+<button id="show">click to show contacts</button>
+
 <h1>Contacts:</h1>
 <div id="results"></div>
